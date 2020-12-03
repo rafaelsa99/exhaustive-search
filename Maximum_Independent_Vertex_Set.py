@@ -22,13 +22,13 @@ def print_graph(g):
 
 def generate_graph(v):
     """Generate and return graph with v vertices."""
-    graph = []
+    graph = [[0 for i in range(v)] for j in range(v)]
     for i in range(v):
-        row = [0 for i in range(v)]
         for j in range(v):
             if j != i:
-                row[j] = random.randint(0, 1)
-        graph.append(row)
+                edge = random.randint(0, 1)
+                graph[i][j] = edge;
+                graph[j][i] = edge;
     return graph
 
 
