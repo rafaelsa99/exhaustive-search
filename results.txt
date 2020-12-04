@@ -1,0 +1,31 @@
+Graph with 15 vertices and 57 edges
+
+	0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
+0	0	1	0	0	1	1	1	0	0	0	0	1	0	0	1	
+1	1	0	0	1	0	1	1	1	1	1	1	0	0	0	0	
+2	0	0	0	0	1	0	1	0	1	1	1	1	1	1	0	
+3	0	1	0	0	0	1	1	1	1	1	1	0	0	0	1	
+4	1	0	1	0	0	1	1	1	1	0	0	0	1	1	0	
+5	1	1	0	1	1	0	1	0	1	0	0	0	0	1	0	
+6	1	1	1	1	1	1	0	0	0	0	0	0	0	0	0	
+7	0	1	0	1	1	0	0	0	1	1	1	1	1	0	1	
+8	0	1	1	1	1	1	0	1	0	1	0	0	1	1	1	
+9	0	1	1	1	0	0	0	1	1	0	1	0	1	1	0	
+10	0	1	1	1	0	0	0	1	0	1	0	1	1	0	1	
+11	1	0	1	0	0	0	0	1	0	0	1	0	1	1	0	
+12	0	0	1	0	1	0	0	1	1	1	1	1	0	1	1	
+13	0	0	1	0	1	1	0	0	1	1	0	1	1	0	0	
+14	1	0	0	1	0	0	0	1	1	0	1	0	1	0	0	
+
+First Maximum Independent Vertex Set:
+	(1, 4, 11, 14)
+Number of candidate sets tested: 31354
+Execution time: 0.08 seconds
+
+All Maximum Independent Vertex Sets:
+	(1, 4, 11, 14)
+	(4, 9, 11, 14)
+	(5, 9, 11, 14)
+	(6, 9, 11, 14)
+Number of candidate sets tested: 32193
+Execution time: 0.08 seconds
