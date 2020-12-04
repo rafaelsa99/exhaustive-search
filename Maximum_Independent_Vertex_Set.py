@@ -82,29 +82,31 @@ def get_maximum_independent_set(graph, num_vert):
 if __name__ == '__main__':
     filename = "results.txt"
     file_results = open(filename, "w")
-    num_vertices = 15
-    adjacency_matrix = generate_graph(num_vertices)
-    file_results.write("Graph with " + str(num_vertices) + " vertices and " +
-                       str(get_num_edges(adjacency_matrix)) + " edges\n\n")
-    print_graph(adjacency_matrix, file_results)
+    max_vertices = 15
+    for num_vertices in range(1, max_vertices + 1, 1):
+        adjacency_matrix = generate_graph(num_vertices)
+        file_results.write("Graph with " + str(num_vertices) + " vertices and " +
+                           str(get_num_edges(adjacency_matrix)) + " edges\n\n")
+        print_graph(adjacency_matrix, file_results)
 
-    file_results.write("First Maximum Independent Vertex Set:\n")
-    start = time.time()
-    max_set = get_maximum_independent_set(adjacency_matrix, num_vertices)
-    end = time.time()
-    file_results.write("\t" + str(max_set) + "\n")
-    file_results.write("Number of candidate sets tested: " + str(count_verifications) + "\n")
-    file_results.write(f"Execution time: {(end - start):.2f} seconds\n")
+        file_results.write("First Maximum Independent Vertex Set:\n")
+        start = time.time()
+        max_set = get_maximum_independent_set(adjacency_matrix, num_vertices)
+        end = time.time()
+        file_results.write("\t" + str(max_set) + "\n")
+        file_results.write("Number of candidate sets tested: " + str(count_verifications) + "\n")
+        file_results.write(f"Execution time: {(end - start):.2f} seconds\n")
 
-    file_results.write("\n")
-    count_verifications = 0
-    file_results.write("All Maximum Independent Vertex Sets:\n")
-    start = time.time()
-    list_sets = get_all_maximum_independent_set(adjacency_matrix, num_vertices)
-    end = time.time()
-    for subset in list(list_sets):
-        file_results.write("\t" + str(subset) + "\n")
-    file_results.write("Number of candidate sets tested: " + str(count_verifications) + "\n")
-    file_results.write(f"Execution time: {(end - start):.2f} seconds\n")
+        file_results.write("\n")
+        count_verifications = 0
+        file_results.write("All Maximum Independent Vertex Sets:\n")
+        start = time.time()
+        list_sets = get_all_maximum_independent_set(adjacency_matrix, num_vertices)
+        end = time.time()
+        for subset in list(list_sets):
+            file_results.write("\t" + str(subset) + "\n")
+        file_results.write("Number of candidate sets tested: " + str(count_verifications) + "\n")
+        file_results.write(f"Execution time: {(end - start):.2f} seconds\n")
+        file_results.write("\n---------------------------------------------------------------------------------\n\n")
 
     print("\nResults written to the file: \"" + filename + "\"")
