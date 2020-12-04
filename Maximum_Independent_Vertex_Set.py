@@ -5,7 +5,10 @@
 __author__ = "Rafael Sá, 104552, rafael.sa@ua.pt, MEI"
 
 import random
+import time
 from itertools import combinations
+
+count_verifications = 0
 
 
 def print_graph(graph):
@@ -38,9 +41,11 @@ def get_num_edges(graph):
     return sum(cell for row in graph for cell in row) // 2
 
 
-def check_independence(graph, subset):
-    """Check if the subset of the G vertices is independent."""
-    comb = combinations(subset, 2)
+def check_independence(graph, candidate_subset):
+    """Check if the candidate subset of the G vertices is independent."""
+    global count_verifications
+    count_verifications += 1
+    comb = combinations(candidate_subset, 2)
     for c in list(comb):
         if graph[c[0]][c[1]] == 1:
             return False
@@ -79,10 +84,22 @@ if __name__ == '__main__':
     adjacency_matrix = generate_graph(num_vertices)
     print("Graph with " + str(num_vertices) + " vertices and " + str(get_num_edges(adjacency_matrix)) + " edges")
     print_graph(adjacency_matrix)
+
     print("First Maximum Independent Vertex Set:")
+    start = time.time()
     max_set = get_maximum_independent_set(adjacency_matrix, num_vertices)
+    end = time.time()
     print(max_set)
+    print("Number of candidate sets tested: " + str(count_verifications))
+    print(f"Execution time: {(end - start):.2f} seconds")
+
+    print()
+    count_verifications = 0
     print("All Maximum Independent Vertex Sets:")
+    start = time.time()
     list_sets = get_all_maximum_independent_set(adjacency_matrix, num_vertices)
+    end = time.time()
     for subset in list(list_sets):
         print(subset)
+    print("Number of candidate sets tested: " + str(count_verifications))
+    print(f"Execution time: {(end - start):.2f} seconds")
