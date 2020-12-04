@@ -47,8 +47,8 @@ def check_independence(graph, subset):
     return True
 
 
-def get_maximum_independent_set(graph, num_vert):
-    """Determine and return the maximum independent vertex set of a graph g."""
+def get_all_maximum_independent_set(graph, num_vert):
+    """Determine and return all maximum independent vertex sets of a graph g."""
     vertices = [i for i in range(num_vert)]
     best_candidate = []
     cardinality_best_candidate = 0
@@ -63,12 +63,26 @@ def get_maximum_independent_set(graph, num_vert):
     return best_candidate
 
 
+def get_maximum_independent_set(graph, num_vert):
+    """Determine and return the first maximum independent vertex set of a graph g."""
+    vertices = [i for i in range(num_vert)]
+    for i in range(num_vert, 0, -1):
+        comb = combinations(vertices, i)
+        for c in list(comb):
+            if check_independence(graph, c):
+                return c
+    return None
+
+
 if __name__ == '__main__':
     num_vertices = 21
     adjacency_matrix = generate_graph(num_vertices)
     print("Graph with " + str(num_vertices) + " vertices and " + str(get_num_edges(adjacency_matrix)) + " edges")
     print_graph(adjacency_matrix)
-    print("Maximum Independent Vertex Set:")
-    list_sets = get_maximum_independent_set(adjacency_matrix, num_vertices)
+    print("First Maximum Independent Vertex Set:")
+    max_set = get_maximum_independent_set(adjacency_matrix, num_vertices)
+    print(max_set)
+    print("All Maximum Independent Vertex Sets:")
+    list_sets = get_all_maximum_independent_set(adjacency_matrix, num_vertices)
     for subset in list(list_sets):
         print(subset)
