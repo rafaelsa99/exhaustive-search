@@ -81,13 +81,13 @@ def get_all_maximum_independent_set(graph, num_vert):
     best_candidate = []
     cardinality_best_candidate = 0
     for i in range(num_vert, 0, -1):
+        if i < cardinality_best_candidate:
+            return best_candidate
         comb = combinations(vertices, i)
         for c in list(comb):
             if check_independence(graph, c) and len(c) >= cardinality_best_candidate:
                 best_candidate.append(c)
                 cardinality_best_candidate = len(c)
-            if len(c) < cardinality_best_candidate:
-                return best_candidate
     return best_candidate
 
 
